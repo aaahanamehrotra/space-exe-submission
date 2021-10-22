@@ -1,0 +1,24 @@
+<h1 class="heading">Discussion Forum</h1>
+<div>
+<% for (let i = 0; i < data.length; i++) { %>
+    <div class="post-card">
+    <h2 class="post-title"><%= data[i].title %></h2>
+    <div class="details">
+    <div class="post-username">
+    <h6 class="posted-by"><%= data[i].username %></h6>
+    </div>
+    <div class="time-details">
+    <% let d = String(data[i].createdAt.getDate()).padStart(2, '0') %>
+    <% let m = String(data[i].createdAt.getMonth() + 1).padStart(2, '0') %>
+    <% let y = data[i].createdAt.getFullYear() %>
+    <h6 class="posted-on"><%= d + '/' + m + '/' + y %></h6>
+    <h6 class="posted-at"><%= data[i].createdAt.toUTCString().slice(16) %></h6>
+    </div>
+    </div>
+    <div class="post-text"><%= data[i].article.slice(0, 200) + "..." %></div>
+    <% let x = `posts/${data[i]._id}` %>
+    <a href=<%= x %> class="read-more">Open Post</a>
+    </div>
+    <% } %>
+</div>
+<a href="/posts/create" class="new-post">Create New Post</a>
